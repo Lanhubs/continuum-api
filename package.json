@@ -1,0 +1,35 @@
+{
+  "name": "api",
+  "module": "index.ts",
+  "type": "module",
+  "private": true,
+  "devDependencies": {
+    "@types/bun": "latest",
+    "@types/uuid": "^11.0.0"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "scripts": {
+    "dev": "bun run --hot ./index.ts --env-file=.env",
+    "build": "hono build",
+    "start": "node dist/index.js"
+  },
+  "dependencies": {
+    "@google/genai": "^1.45.0",
+    "@hono/node-server": "^1.19.11",
+    "@jimp/core": "^1.6.0",
+    "@jimp/plugin-blit": "^1.6.0",
+    "@types/node": "^25.5.0",
+    "@types/pg": "^8.18.0",
+    "better-auth": "^1.5.5",
+    "dotenv": "^17.3.1",
+    "hono": "^4.12.8",
+    "jimp": "^1.6.0",
+    "opencv-wasm": "^4.3.0-10",
+    "pg": "^8.20.0",
+    "tesseract.js": "^7.0.0",
+    "uuid": "^13.0.0",
+    "zod": "^4.3.6"
+  }
+}
