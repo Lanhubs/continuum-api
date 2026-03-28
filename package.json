@@ -19,6 +19,8 @@
     "@google/genai": "^1.45.0",
     "@hono/node-server": "^1.19.11",
     "@jimp/core": "^1.6.0",
+    "axios": "^1.7.9",
+    "form-data": "^4.0.1",
     "@jimp/plugin-blit": "^1.6.0",
     "@types/node": "^25.5.0",
     "@types/pg": "^8.18.0",

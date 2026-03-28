@@ -6,7 +6,7 @@ import "dotenv/config";
 
 export const auth = betterAuth({
     database: new Pool({
-        connectionString: process.env.DATABASE_URL,
+        connectionString:  process.env.DATABASE_URL!,
     }),
     baseURL: process.env.BETTER_AUTH_URL ,
     trustedOrigins: [process.env.TRUSTED_ORIIGIN_URL!],

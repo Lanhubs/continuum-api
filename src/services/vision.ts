@@ -6,7 +6,7 @@ import type { InterpretationResponse } from "../models/interpret";
 import { TypeGuards } from "../utils/guards";
 import { MarkerRepository } from "../repositories/marker";
 
-const GEN_AI_KEY = process.env.GEMINI_API_KEY || "";
+const GEN_AI_KEY = process.env.GEMINI_API_KEY!;
 
 export const VisionService = {
   async initOpenCV() {
@@ -137,7 +137,7 @@ export const VisionService = {
     `;
 
     const response = await client.models.generateContent({
-      model: "gemini-2.1-flash", 
+      model: "gemini-2.5-flash", 
       contents: [
         {
           role: "user",

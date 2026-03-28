@@ -1,6 +1,6 @@
 import type { Context } from "hono";
 import { VisionService } from "../services/vision";
-import { MedGemmaService } from "../services/medgemma";
+import { RaveService } from "../services/rave";
 import { DocumentRepository } from "../repositories/document";
 import { MarkerRepository } from "../repositories/marker";
 import { v4 as uuidv4 } from "uuid";
@@ -38,7 +38,7 @@ export const InterpretController = {
         if (image.type !== "application/pdf") {
           try {
             enhancedBuffer = type === 'RADIOLOGY' 
-              ? (await MedGemmaService.preprocess(buffer)) as any 
+              ? buffer 
               : (await VisionService.enhanceImage(buffer)) as any;
             mimeType = 'image/jpeg';
           } catch (opencvError) {
@@ -50,10 +50,10 @@ export const InterpretController = {
 
         let result: InterpretationResponse;
         if (type === 'RADIOLOGY') {
-          const radiologyResult = await MedGemmaService.analyzeScan(enhancedBuffer, mimeType);
+          const radiologyResult = await RaveService.analyzeRadiology(enhancedBuffer, mimeType, type);
           
           const assistantContext: AIAssistantContext = {
-            primary_focus: radiologyResult.findings[0] || "Analysis complete",
+            primary_focus: radiologyResult.findings?.[0] || "Analysis complete",
             suggested_questions: ["What does this mean for my health?", "Should I see a specialist?"],
             report_integrity: Math.round((radiologyResult.confidence || 0.9) * 100)
           };
